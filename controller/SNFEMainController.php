@@ -92,8 +92,8 @@ class SNFEMainController
         if( $entry_id ) {
             $table = $wpdb->prefix . 'nf_entry_meta';
             foreach ($fields as $field) {
-                if (strpos($field['key'], 'submit_') === false) {
-                    $key = preg_replace('/_\d+$/', '', $field['key']);
+                $key = preg_replace('/_\d+$/', '', $field['key']);
+                if ($key != 'submit') {
                     $entry_meta = array( 'nf_entry_id' => $entry_id, 'meta_key' => $key, 'meta_value' => $field['value'] );
                     $wpdb->insert($table, $entry_meta);
                 }
